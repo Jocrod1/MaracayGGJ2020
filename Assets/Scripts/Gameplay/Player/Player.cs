@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(PlayerPush))]
 public class Player : MonoBehaviour {
 
 	public float jumpHeight = 4;
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour {
 	float velocityXSmoothing;
 
     Rigidbody2D Rb2D;
+    PlayerPush playerP;
 
     public float JumpVel;
     public float distToGround;
@@ -24,6 +26,7 @@ public class Player : MonoBehaviour {
 	void Start() {
         Rb2D = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
+        playerP = GetComponent<PlayerPush>();
 
         distToGround = coll.bounds.extents.y;
 
@@ -46,7 +49,7 @@ public class Player : MonoBehaviour {
         Debug.DrawLine(transform.position, transform.position + Vector3.down * (distToGround + 0.1f), Color.white);
         Vector2 input = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
         //print(IsGrounded());
-		if (Input.GetKeyDown (KeyCode.Space) && IsGrounded()) {
+		if (Input.GetKeyDown (KeyCode.Space) && IsGrounded() && !playerP.Joined) {
             Rb2D.velocity = new Vector2(Rb2D.velocity.x, jumpVelocity);
         }
 
