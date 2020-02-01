@@ -15,14 +15,19 @@ public class PlayerPush : MonoBehaviour
     {
         
     }
-
+    public bool Joined { get; set; }
     // Update is called once per frame
     void Update()
     {
         Physics2D.queriesStartInColliders=false;
         RaycastHit2D hit=Physics2D.Raycast(transform.position, Vector2.right*transform.localScale.x, distance, boxMask);
 
-        if(hit.collider != null && hit.collider.gameObject.tag=="Pushable" && Input.GetKey(KeyCode.E))
+
+        if (hit.collider != null && hit.collider.gameObject.tag == "Pushable" && Input.GetKeyDown(KeyCode.E)) {
+            Joined = true;
+        }
+
+        if(hit.collider != null && hit.collider.gameObject.tag=="Pushable" && Input.GetKeyDown(KeyCode.E))
         {
             box = hit.collider.gameObject;
 
