@@ -8,6 +8,8 @@ public class PlayerPush : MonoBehaviour
 
     public LayerMask boxMask;
 
+    GameObject box;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +24,7 @@ public class PlayerPush : MonoBehaviour
 
         if(hit.collider != null && Input.GetKey(KeyCode.E))
         {
-            box.hit.collider.gameObject;
+            box = hit.collider.gameObject;
         }
     }
 
