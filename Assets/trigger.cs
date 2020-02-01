@@ -5,12 +5,35 @@ using UnityEngine;
 public class trigger : MonoBehaviour
 {
     
-    public bool palanca { get; private set; }
+    public bool presionado, palanca;
+
+    private bool activado;
+
+    private SpriteRenderer sprite;
+    
+    void Start()
+    {
+        sprite = GetComponent<SpriteRenderer>();
+    }
+
 
 private void Update() {
     
-    print(palanca);
+    if(Input.GetKeyDown(KeyCode.E) && activado)
+    {
+        palanca=!palanca;
 
+        presionado=true;
+    }
+
+    if(palanca==true)
+    {
+        sprite.color = Color.red;
+    }
+    else
+    {
+        sprite.color = Color.white;
+    }
 }
 
 
@@ -18,10 +41,15 @@ private void Update() {
     {
         if (collision.gameObject.tag == "Player")
         {
-            if(Input.GetKeyDown(KeyCode.E))
-            {
-                palanca=true;
-            }
+            activado=true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            activado=false;
         }
     }
     
