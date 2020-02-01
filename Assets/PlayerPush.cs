@@ -29,7 +29,7 @@ public class PlayerPush : MonoBehaviour
             box.GetComponent<FixedJoint2D>().enabled=true;
             box.GetComponent<FixedJoint2D>().connectedBody=this.GetComponent<Rigidbody2D>();
         } 
-        else if(Input.GetKeyUp (KeyCode.E))
+        else if(Input.GetKeyUp (KeyCode.E) && box != null)
         {
             box.GetComponent<FixedJoint2D>().enabled=false;
         }
