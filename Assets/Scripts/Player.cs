@@ -50,5 +50,10 @@ public class Player : MonoBehaviour {
 		velocity.x = Mathf.SmoothDamp (velocity.x, targetVelocityX, ref velocityXSmoothing, accelerationTimeGrounded);
 		//velocity.y += gravity * Time.deltaTime;
         Rb2D.velocity = new Vector2(velocity.x, Rb2D.velocity.y);
+
+		Vector3 moviment= new Vector3(Input.GetAxisRaw("Horizontal"),0, 0);
+
+		if (moviment.x != 0)
+            transform.localScale = new Vector3(moviment.x, 1f, 1f);
 	}
 }
