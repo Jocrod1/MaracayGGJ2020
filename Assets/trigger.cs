@@ -5,45 +5,23 @@ using UnityEngine;
 public class trigger : MonoBehaviour
 {
     
-    public bool tocarCaja { get; private set; }
-    private Rigidbody2D rb2d;
+    public bool palanca { get; private set; }
 
-    void Start()
-    {
-        rb2d = GetComponent<Rigidbody2D>();
-    }
+private void Update() {
     
-    void FixedUpdate()
-    {
-        if (tocarCaja)
-        {
-            this.rb2d.isKinematic=false;
-            
-            rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
-        
-        } else
-        {
-            
-            rb2d.velocity = new Vector2(0, 0);
+    print(palanca);
 
-            this.rb2d.isKinematic=true;
-        
-        }
-    }
+}
 
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            tocarCaja=true;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            tocarCaja=false;
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                palanca=true;
+            }
         }
     }
     
