@@ -45,7 +45,7 @@ public class Player : MonoBehaviour {
 	void Update() {
         Debug.DrawLine(transform.position, transform.position + Vector3.down * (distToGround + 0.1f), Color.white);
         Vector2 input = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
-        print(IsGrounded());
+        //print(IsGrounded());
 		if (Input.GetKeyDown (KeyCode.Space) && IsGrounded()) {
             Rb2D.velocity = new Vector2(Rb2D.velocity.x, jumpVelocity);
         }
