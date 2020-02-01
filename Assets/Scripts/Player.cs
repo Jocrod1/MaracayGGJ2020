@@ -17,9 +17,15 @@ public class Player : MonoBehaviour {
     Rigidbody2D Rb2D;
 
     public float JumpVel;
+    public float distToGround;
+    BoxCollider2D coll;
+    public LayerMask Layer;
 
 	void Start() {
         Rb2D = GetComponent<Rigidbody2D>();
+        coll = GetComponent<BoxCollider2D>();
+
+        distToGround = coll.bounds.extents.y;
 
         gravity = (-(2 * jumpHeight) / Mathf.Pow(timeToJumpApex, 2)) / Mathf.Abs(Physics2D.gravity.y);
         Rb2D.gravityScale = Mathf.Abs(gravity);
@@ -27,11 +33,16 @@ public class Player : MonoBehaviour {
 		print ("Gravity: " + gravity + "  Jump Velocity: " + jumpVelocity);
 	}
 
+    public bool IsGrounded() {
+
+        return Physics2D.Raycast(transform.position, Vector2.down, distToGround + 0.1f, Layer);
+    }
+
 	void Update() {
-
-		Vector2 input = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
-
-		if (Input.GetKeyDown (KeyCode.Space)) {
+        Debug.DrawLine(transform.position, transform.position + Vector3.down * (distToGround + 0.1f), Color.white);
+        Vector2 input = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
+        print(IsGrounded());
+		if (Input.GetKeyDown (KeyCode.Space) && IsGrounded()) {
             Rb2D.velocity = new Vector2(Rb2D.velocity.x, jumpVelocity);
         }
 
