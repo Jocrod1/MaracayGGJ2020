@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class prlx : MonoBehaviour
 {
-    public Transform[] backgrounds;
+/*    public Transform[] backgrounds;
     private float[] parallaxScales;
     public float smoothing = 1f;
     private Transform cam;
@@ -18,9 +18,9 @@ public class prlx : MonoBehaviour
     {
         previousCamPos = cam.position;
 
-        parallaxScales = new float[backgrounds.lenght];
+        parallaxScales = new float[backgrounds.Length];
 
-        for (int i = 0; i < backgrounds.length; i++)
+        for (int i = 0; i < backgrounds.Length; i++)
         {
             parallaxScales[i] = backgrounds[i].position.z*-1;
         }
@@ -29,9 +29,9 @@ public class prlx : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       for (int i = 0; i < backgrounds.length; i++)
+       for (int i = 0; i < backgrounds.Length; i++)
        {
-          float parallax = (previousCamPos - Cam.position.x) * parallaxScales[i];
+          float parallax = (previousCamPos.x - cam.position.x) * parallaxScales[i];
 
           float backgroundTargetPosX = backgrounds[i].position.x + parallax;
 
@@ -41,5 +41,56 @@ public class prlx : MonoBehaviour
        } 
 
       previousCamPos = cam.position; 
+    }
+    */
+    [Tooltip("Aqui van los backgrounds y sus diferentes escalas")]
+    public ParallaxElement[] Elements;
+    public float Smoothing;
+
+    public bool freezey, freezex;
+
+
+    private Transform Came;
+    private Vector3 PreviousCamPos;
+
+	// Use this for initialization
+	void Start () {
+
+        Came = Camera.main.transform;
+
+        PreviousCamPos = Came.position;
+
+        Smoothing = -Smoothing;
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
+
+        for (int i = 0; i < Elements.Length; i++) {
+            Vector3 Parallax = (PreviousCamPos - Came.position) * (Elements[i].ParallaxScale / Smoothing);
+
+            float x, y, z;
+
+            y = Elements[i].Background.position.y;
+            x = Elements[i].Background.position.x;
+            z = Elements[i].Background.position.z;
+
+            if (!freezey)
+                y += Parallax.y;
+
+            if (!freezex)
+                x += Parallax.x;
+
+            Elements[i].Background.position = new Vector3(x, y, z);
+        }
+        PreviousCamPos = Came.position;
+
+	}
+
+    [System.Serializable]
+    public struct ParallaxElement {
+        public Transform Background;
+        public float ParallaxScale;
     }
 }
