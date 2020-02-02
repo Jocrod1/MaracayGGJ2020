@@ -25,6 +25,7 @@ private void Update() {
 
         presionado=true;
     }
+    
 
     if(palanca==true)
     {
