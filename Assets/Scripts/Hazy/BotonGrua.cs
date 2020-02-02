@@ -26,13 +26,21 @@ public class BotonGrua : MonoBehaviour
         follow = camara.GetComponent<FollowTarget>();
 
         scriptPlayer = player.GetComponent<Player>();
+
+        auxtimer = timer;
     }
 
+
+    float auxtimer;
     private void FixedUpdate()
     {
         if (activado2)
         {
-            RB2D.isKinematic = false;
+            if (timer == auxtimer) {
+                RB2D.isKinematic = false;
+                Destroy(RB2D.gameObject, 3f);
+            }
+            
             timer -= Time.deltaTime;
 
             if (timer <= 0.0f)
