@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BotonGrua : MonoBehaviour
 {
-    public GameObject grua, camara, player, panel;
+    public GameObject grua, camara, player, panel, target;
 
     private Rigidbody2D RB2D;
 
@@ -43,12 +43,16 @@ public class BotonGrua : MonoBehaviour
             
             timer -= Time.deltaTime;
 
+            follow.target= target.transform;
+
             if (timer <= 0.0f)
             {
                 follow.gameObject.GetComponent<FollowTarget>().GetDamage(ShakeDuration, ShakeMagnitude, 0,0);
                 scriptPlayer.enabled = true;
                 panel.SetActive(false);
                 activado2 = false;
+
+                follow.target= player.transform;
             }
         }
     }

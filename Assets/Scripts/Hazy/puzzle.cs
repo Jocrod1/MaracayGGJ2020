@@ -6,7 +6,7 @@ public class puzzle : MonoBehaviour
 {
     public GameObject palanca1, palanca2, palanca3, palanca4, palanca5, puerta, target, player, camara, targetVista;
 
-    public Animator anim1, anim2, anim3, anim4, anim5;
+    private Animator anim1, anim2, anim3, anim4, anim5;
 
     private FollowTarget follow;
     
