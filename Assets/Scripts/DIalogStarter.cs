@@ -5,7 +5,11 @@ using UnityEngine;
 public class DIalogStarter : MonoBehaviour
 {
     public Dialogue dialogue;
-    public DialogueManager DM;
+    public GameManager GM;
+
+    public bool heart1, heart2, heart3;
+
+    public string eachone;
 
     BoxCollider2D Coll;
 
@@ -20,7 +24,14 @@ public class DIalogStarter : MonoBehaviour
     void Update()
     {
         if (OnTrigger && Input.GetKeyDown(KeyCode.E)) {
-            DM.StartConversation(dialogue, gameObject);
+            GM.SetMessagePanel("you have " + eachone + " of 3", dialogue);
+            if (heart1)
+                GM.heart1 = heart1;
+            if (heart2)
+                GM.heart2 = heart2;
+            if (heart3)
+                GM.heart3 = heart3;
+            transform.parent.gameObject.SetActive(false);
         }
     }
     private void OnTriggerEnter2D(Collider2D collider)

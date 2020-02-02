@@ -31,7 +31,7 @@ public class DialogueManager : MonoBehaviour {
 	void Update () {
         //if (Input.GetKeyDown(KeyCode.X))
         //    StartDialogue();
-        if (Input.GetKeyDown(KeyCode.E)) {
+        if (Input.GetKeyDown(KeyCode.E) && InConversation) {
             if(!InSentence){
                 NextSentence();
                 print(i + "and" + j);
@@ -55,14 +55,11 @@ public class DialogueManager : MonoBehaviour {
     //    }
     //}
 
-    GameObject AuxObj;
 
-    public void StartConversation(Dialogue dialogue, GameObject ObjDeactivate) {
+    public void StartConversation(Dialogue dialogue) {
         i = 0;
         j = 0;
         Conversation = dialogue;
-        AuxObj = ObjDeactivate;
-        AuxObj.SetActive(false);
         InConversation = true;
         InSentence = false;
         DialogueUI.SetActive(true);
@@ -114,8 +111,6 @@ public class DialogueManager : MonoBehaviour {
 
     public void EndConversation() {
         InConversation = false;
-        AuxObj.SetActive(true);
-        AuxObj = null;
         DialogueUI.SetActive(false);
     }
 
