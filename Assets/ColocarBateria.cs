@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class ColocarBateria : MonoBehaviour
 {
-    public GameObject bateria, camara, target, player;
+    public GameObject bateria, camara, target, player, grua, objgrua;
 
     private BoxCollider2D BCD2;
     private Rigidbody2D RB2D;
 
     private FollowTarget follow;
 
+    private Player scriptPlayer;
+
     private bool animacion;
 
-    public float timerTransicion;
+    public float timerTransicion, timerGrua, velocidad;
 
 
     void Start()
@@ -21,8 +23,9 @@ public class ColocarBateria : MonoBehaviour
         BCD2= bateria.GetComponent<BoxCollider2D>();
         RB2D= bateria.GetComponent<Rigidbody2D>();
 
-        follow=camara.GetComponent<FollowTarget>();
+        scriptPlayer = player.GetComponent<Player>();
 
+        follow =camara.GetComponent<FollowTarget>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -42,13 +45,26 @@ public class ColocarBateria : MonoBehaviour
     {
         if(animacion)
         {
+            scriptPlayer.enabled = false;
+
             follow.target= target.transform;
 
             timerTransicion -= Time.deltaTime;
+            timerGrua -= Time.deltaTime;
 
-            if(timerTransicion <= 0.0f)
+            //la grua subiendo
+            if(timerGrua <=0.0f)
+            {
+                float velocidad_nueva = velocidad * Time.deltaTime;
+
+                grua.transform.position = Vector3.MoveTowards(grua.transform.position, objgrua.transform.position, velocidad_nueva);
+            }
+
+            if (timerTransicion <= 0.0f)
             {
                 follow.target= player.transform;
+                scriptPlayer.enabled = true;
+                animacion = false;
             }
         }
     }
