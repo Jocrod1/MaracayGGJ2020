@@ -9,11 +9,12 @@ public class trigger : MonoBehaviour
 
     private bool activado;
 
-    private SpriteRenderer sprite;
+    private Animator anim;
     
     void Start()
     {
-        sprite = GetComponent<SpriteRenderer>();
+
+        anim = GetComponent<Animator>();
     }
 
 
@@ -25,16 +26,8 @@ private void Update() {
 
         presionado=true;
     }
-    
 
-    if(palanca==true)
-    {
-        sprite.color = Color.red;
-    }
-    else
-    {
-        sprite.color = Color.white;
-    }
+    anim.SetBool("Activado", palanca);
 }
 
 

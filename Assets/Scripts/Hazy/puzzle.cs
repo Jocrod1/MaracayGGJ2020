@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class puzzle : MonoBehaviour
 {
-    public GameObject palanca1, palanca2, palanca3, palanca4, palanca5, puerta, target, player;
+    public GameObject palanca1, palanca2, palanca3, palanca4, palanca5, puerta, target, player, camara, targetVista;
 
+    public Animator anim1, anim2, anim3, anim4, anim5;
+
+    private FollowTarget follow;
     
     private Player scriptPlayer;
 
@@ -13,7 +16,8 @@ public class puzzle : MonoBehaviour
 
     private bool activarPuerta;
 
-    public float velocidad;
+    public float velocidad, timer, timerMovimiento, ShakeDuration, ShakeMagnitude;
+
 
 
     // Start is called before the first frame update
@@ -25,7 +29,14 @@ public class puzzle : MonoBehaviour
         trigger4=palanca4.GetComponent<trigger>();
         trigger5=palanca5.GetComponent<trigger>();
 
+        anim1=palanca1.GetComponent<Animator>();
+        anim2=palanca2.GetComponent<Animator>();
+        anim3=palanca3.GetComponent<Animator>();
+        anim4=palanca4.GetComponent<Animator>();
+        anim5=palanca5.GetComponent<Animator>();
+
         scriptPlayer = player.GetComponent<Player>();
+        follow =camara.GetComponent<FollowTarget>();
     }
 
     // Update is called once per frame
@@ -69,6 +80,12 @@ public class puzzle : MonoBehaviour
 
         if(trigger1.palanca && trigger2.palanca && trigger3.palanca && trigger4.palanca && trigger5.palanca)
         {
+            anim1.SetBool("Activado", true);
+            anim2.SetBool("Activado", true);
+            anim3.SetBool("Activado", true);
+            anim4.SetBool("Activado", true);
+            anim5.SetBool("Activado", true);
+
             trigger1.enabled=false;
             trigger2.enabled=false;
             trigger3.enabled=false;
@@ -77,11 +94,20 @@ public class puzzle : MonoBehaviour
 
             scriptPlayer.enabled = false;
             scriptPlayer.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            follow.target= targetVista.transform;
+
+            timer -= Time.deltaTime;
+            timerMovimiento -= Time.deltaTime;
 
             float velocidad_nueva = velocidad * Time.deltaTime;
             puerta.transform.position = Vector3.MoveTowards(puerta.transform.position, target.transform.position, velocidad_nueva);
 
-            if(puerta.transform.position == target.transform.position)
+            if (timerMovimiento <= 0.0f)
+            {
+                follow.gameObject.GetComponent<FollowTarget>().GetDamage(ShakeDuration, ShakeMagnitude, 0,0);
+            }
+
+            if (timer <= 0.0f)
             {
                 trigger1.palanca=false;
                 trigger2.palanca=false;
@@ -89,6 +115,7 @@ public class puzzle : MonoBehaviour
                 trigger4.palanca=false;
                 trigger5.palanca=false;
 
+                follow.target= player.transform;
                 scriptPlayer.enabled = true;
             }
         }
