@@ -5,10 +5,6 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour {
 
-    public string FileName;
-
-    public bool WriteText;
-
     public Dialogue Conversation;
 
     public static int i { get; private set; }
@@ -18,17 +14,15 @@ public class DialogueManager : MonoBehaviour {
     public static bool InConversation { get; private set; }
     public static bool InSentence { get; private set;}
 
-    public Text NameTxt;
+    //public Text NameTxt;
     public Text SentenceTxt;
+    public Image FaceUI;
 
     public GameObject DialogueUI;
 
     public static DialogueManager MeInThis { get; private set; }
     void Awake() {
         MeInThis = this;
-        //if(WriteText){
-        //    JsonLoader<Dialogue>.UpdateData(Conversation, FileName);
-        //}
         DialogueUI.SetActive(false);
         InConversation = false;
     }
@@ -52,19 +46,23 @@ public class DialogueManager : MonoBehaviour {
 		
 	}
 
-    public void StartDialogue(){
-        Dialogue Conv = Conversation;
-        if(Conv != null){
-            StartConversation();
-        }else{
-            print("Invalid Conversation");
-        }
-    }
+    //public void StartDialogue(){
+    //    Dialogue Conv = Conversation;
+    //    if(Conv != null){
+    //        StartConversation();
+    //    }else{
+    //        print("Invalid Conversation");
+    //    }
+    //}
 
+    GameObject AuxObj;
 
-    public void StartConversation() {
+    public void StartConversation(Dialogue dialogue, GameObject ObjDeactivate) {
         i = 0;
         j = 0;
+        Conversation = dialogue;
+        AuxObj = ObjDeactivate;
+        AuxObj.SetActive(false);
         InConversation = true;
         InSentence = false;
         DialogueUI.SetActive(true);
@@ -77,7 +75,7 @@ public class DialogueManager : MonoBehaviour {
             NextChat();
             return;
         }
-        NameTxt.text = Conversation.Conversation[i].Name;
+        FaceUI.sprite = Conversation.Conversation[i].Face;
         StopAllCoroutines();
         StartCoroutine(TypeSentence(Conversation.Conversation[i].Sentences[j]));
         j++;
@@ -116,6 +114,8 @@ public class DialogueManager : MonoBehaviour {
 
     public void EndConversation() {
         InConversation = false;
+        AuxObj.SetActive(true);
+        AuxObj = null;
         DialogueUI.SetActive(false);
     }
 
@@ -128,4 +128,5 @@ public class Dialogue {
 public class Chat {
     public string Name;
     public List<string> Sentences;
+    public Sprite Face;
 }

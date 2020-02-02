@@ -23,6 +23,8 @@ public class Player : MonoBehaviour {
     BoxCollider2D coll;
     public LayerMask Layer;
 
+    public DialogueManager DialogM;
+
 	void Start() {
         Rb2D = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
@@ -63,6 +65,8 @@ public class Player : MonoBehaviour {
         Rb2D.velocity = new Vector2(velocity.x, Rb2D.velocity.y);
 
 		Vector3 moviment= new Vector3(Input.GetAxisRaw("Horizontal"),0, 0);
+
+        
 
 		if (moviment.x != 0)
             transform.localScale = new Vector3(moviment.x, 1f, 1f);
