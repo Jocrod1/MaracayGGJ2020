@@ -155,8 +155,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 91.34339, y: -49.939987}
-  m_SizeDelta: {x: 1097.7, y: 190.07}
+  m_AnchoredPosition: {x: 151, y: -17.992}
+  m_SizeDelta: {x: 896.1, y: 224.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &621417409
 MonoBehaviour:
@@ -460,8 +460,8 @@ MonoBehaviour:
     Conversation:
     - Name: 
       Sentences:
-      - wdasdasd
-      - addddffghhhhh
+      - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa
+      - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa
       Face: {fileID: 21300000, guid: 5b5b4ada569785e4fa3c2cc44775fda6, type: 3}
   DM: {fileID: 1031083289}
   OnTrigger: 0
@@ -746,8 +746,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 459, y: -12}
-  m_SizeDelta: {x: 172.7, y: 172.7}
+  m_AnchoredPosition: {x: -493, y: -0.0000019073}
+  m_SizeDelta: {x: 241.9, y: 241.87}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1726501286
 MonoBehaviour:
