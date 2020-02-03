@@ -7,6 +7,7 @@ TagManager:
   - Pushable
   - Zona
   - Ascensor
+  - Grounded
   layers:
   - Default
   - TransparentFX

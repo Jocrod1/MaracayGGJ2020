@@ -10,6 +10,8 @@ public class Player : MonoBehaviour {
 	float accelerationTimeGrounded = .1f;
 	float moveSpeed = 6;
 
+    private bool tocarSuelo= true, saltar;
+
 	float gravity;
 	float jumpVelocity;
 	Vector3 velocity;
@@ -25,10 +27,14 @@ public class Player : MonoBehaviour {
 
     public DialogueManager DialogM;
 
+    private Animator anim;
+
 	void Start() {
         Rb2D = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         playerP = GetComponent<PlayerPush>();
+
+        anim = GetComponent<Animator>();
 
         distToGround = coll.bounds.extents.y;
 
@@ -48,6 +54,11 @@ public class Player : MonoBehaviour {
 
 
 	void Update() {
+
+        anim.SetFloat("Speed", Mathf.Abs(Rb2D.velocity.x));
+
+        anim.SetBool("Grounded", tocarSuelo);
+
         Debug.DrawLine(transform.position, transform.position + Vector3.down * (distToGround + 0.1f), Color.white);
         Vector2 input = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
         //print(IsGrounded());
@@ -71,4 +82,20 @@ public class Player : MonoBehaviour {
 		if (moviment.x != 0)
             transform.localScale = new Vector3(moviment.x, 1f, 1f);
 	}
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Grounded")
+        {
+            tocarSuelo = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Grounded")
+        {
+            tocarSuelo = false;
+        }
+    }
 }

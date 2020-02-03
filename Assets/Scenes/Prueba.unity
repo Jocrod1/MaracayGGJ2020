@@ -307,6 +307,7 @@ MonoBehaviour:
   camara: {fileID: 2109612568}
   player: {fileID: 670862210}
   panel: {fileID: 0}
+  target: {fileID: 0}
   timer: 0
   ShakeMagnitude: 0
   ShakeDuration: 0
@@ -316,22 +317,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1748626452}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &670862211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 670862210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1955020e0a71bb45b697b662a0d10c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 1
-  boxMask:
-    serializedVersion: 2
-    m_Bits: 567
 --- !u!4 &670862217 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5237085538773355755, guid: 038a7e7d4564ce14cabd1070b34f63b5,
@@ -669,20 +654,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5237085538773355536, guid: 038a7e7d4564ce14cabd1070b34f63b5,
-        type: 3}
-      propertyPath: m_BodyType
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5237085538773355537, guid: 038a7e7d4564ce14cabd1070b34f63b5,
         type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5237085538773355537, guid: 038a7e7d4564ce14cabd1070b34f63b5,
+    - target: {fileID: 5237085538773355542, guid: 038a7e7d4564ce14cabd1070b34f63b5,
         type: 3}
-      propertyPath: m_TagString
-      value: Player
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5237085538773355755, guid: 038a7e7d4564ce14cabd1070b34f63b5,
         type: 3}
@@ -739,8 +719,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1156915100, guid: 038a7e7d4564ce14cabd1070b34f63b5, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 038a7e7d4564ce14cabd1070b34f63b5, type: 3}
 --- !u!1 &1869110992
 GameObject:
@@ -802,6 +781,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2086289211 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7195728929264642508, guid: 42d8af52d7b2cb947a6258e0b5e94fd9,
+    type: 3}
+  m_PrefabInstance: {fileID: 7195728929499984979}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2086289215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086289211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 946da377627949240a37832bb8bde93c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundedBool: 0
 --- !u!1 &2109612568 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7970359944497101523, guid: 1cfb08c4d86fe864187ae0f9dd6cf21b,
@@ -1036,6 +1034,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Piso
+      objectReference: {fileID: 0}
+    - target: {fileID: 7195728929264642508, guid: 42d8af52d7b2cb947a6258e0b5e94fd9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Grounded
       objectReference: {fileID: 0}
     - target: {fileID: 7195728929264642545, guid: 42d8af52d7b2cb947a6258e0b5e94fd9,
         type: 3}
