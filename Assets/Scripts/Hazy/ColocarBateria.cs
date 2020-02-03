@@ -39,7 +39,7 @@ public class ColocarBateria : MonoBehaviour
 
             push.Joined = false;
             bateria.GetComponent<FixedJoint2D>().enabled = false;
-
+            collision.gameObject.SetActive(false);
             RB2D.velocity= Vector3.zero;
             RB2D.isKinematic=true;
 
