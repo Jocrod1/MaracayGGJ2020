@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5237085538773355542}
   - component: {fileID: 5237085538773355536}
   - component: {fileID: 378961875816099903}
-  - component: {fileID: 670862212}
   - component: {fileID: 670862211}
+  - component: {fileID: 2077724262}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpHeight: 4
   timeToJumpApex: 0.4
-  JumpVel: 10
+  JumpVel: 8
   distToGround: 0
   Layer:
     serializedVersion: 2
@@ -73,7 +73,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.8509512}
+  m_Offset: {x: 0, y: 0.76}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.1051754}
@@ -84,7 +84,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 2.251399}
+  m_Size: {x: 1, y: 2.01505}
   m_EdgeRadius: 0
 --- !u!50 &5237085538773355536
 Rigidbody2D:
@@ -157,7 +157,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &670862212
+--- !u!114 &670862211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5237085538773355537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1955020e0a71bb45b697b662a0d10c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 1
+  boxMask:
+    serializedVersion: 2
+    m_Bits: 567
+--- !u!95 &2077724262
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -176,19 +192,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &670862211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5237085538773355537}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1955020e0a71bb45b697b662a0d10c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 1
-  boxMask:
-    serializedVersion: 2
-    m_Bits: 567

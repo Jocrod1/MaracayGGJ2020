@@ -18,6 +18,8 @@ public class puzzle : MonoBehaviour
 
     public float velocidad, timer, timerMovimiento, ShakeDuration, ShakeMagnitude;
 
+    private Animator animPj;
+
 
 
     // Start is called before the first frame update
@@ -37,6 +39,8 @@ public class puzzle : MonoBehaviour
 
         scriptPlayer = player.GetComponent<Player>();
         follow =camara.GetComponent<FollowTarget>();
+
+        animPj= player.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -80,6 +84,9 @@ public class puzzle : MonoBehaviour
 
         if(trigger1.palanca && trigger2.palanca && trigger3.palanca && trigger4.palanca && trigger5.palanca)
         {
+            animPj.SetBool("Grabing", false);
+            animPj.SetFloat("Speed", 0.0f);
+
             anim1.SetBool("Activado", true);
             anim2.SetBool("Activado", true);
             anim3.SetBool("Activado", true);

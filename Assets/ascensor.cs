@@ -12,15 +12,15 @@ public class ascensor : MonoBehaviour
 
     private Player scriptPlayer;
 
+    private Animator animPj;
+
     // Start is called before the first frame update
     void Start()
     {
         scriptPlayer = player.GetComponent<Player>();
+        animPj=player.GetComponent<Animator>();
     }
 
-    private void Update() {
-        
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -37,6 +37,9 @@ public class ascensor : MonoBehaviour
         {
             if(this.transform.position.y!=target.transform.position.y)
             {
+                animPj.SetBool("Grabing", false);
+                animPj.SetFloat("Speed", 0.0f);
+
                 scriptPlayer.enabled = false;
                 scriptPlayer.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 

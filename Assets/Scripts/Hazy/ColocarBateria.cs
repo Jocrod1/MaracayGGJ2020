@@ -16,6 +16,8 @@ public class ColocarBateria : MonoBehaviour
 
     private bool animacion;
 
+    private Animator anim;
+
     public float timerTransicion, timerGrua, velocidad;
 
 
@@ -29,19 +31,22 @@ public class ColocarBateria : MonoBehaviour
         follow =camara.GetComponent<FollowTarget>();
 
         push = player.GetComponent<PlayerPush>();
+
+        anim= player.GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Zona")
         {
+            RB2D.velocity= Vector3.zero;
+            RB2D.isKinematic=true;
+
             BCD2.enabled=false;
 
             push.Joined = false;
             bateria.GetComponent<FixedJoint2D>().enabled = false;
             collision.gameObject.SetActive(false);
-            RB2D.velocity= Vector3.zero;
-            RB2D.isKinematic=true;
 
             animacion=true;
         }
@@ -52,6 +57,8 @@ public class ColocarBateria : MonoBehaviour
     {
         if(animacion)
         {
+            anim.SetBool("Grabing", false);
+            anim.SetFloat("Speed", 0.0f);
             scriptPlayer.enabled = false;
             scriptPlayer.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 

@@ -10,10 +10,14 @@ public class PlayerPush : MonoBehaviour
 
     GameObject box;
 
+    private Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
         Joined = false;
+
+        anim = GetComponent<Animator>();
     }
     public bool Joined { get; set; }
     // Update is called once per frame
@@ -27,12 +31,16 @@ public class PlayerPush : MonoBehaviour
         {
             Joined = true;
             box = hit.collider.gameObject;
+
+            anim.SetBool("Grabing", true);
         }
         else if (Input.GetKeyDown(KeyCode.E) && box != null) {
             Joined = false;
             box.GetComponent<FixedJoint2D>().enabled = false;
             box.GetComponent<Rigidbody2D>().isKinematic = true;
             box.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
+            anim.SetBool("Grabing", false);
         }
 
         if(Joined)

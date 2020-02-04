@@ -16,6 +16,8 @@ public class BotonGrua : MonoBehaviour
 
     public float timer;
 
+    private Animator anim;
+
     public float ShakeMagnitude, ShakeDuration;
 
 
@@ -27,6 +29,8 @@ public class BotonGrua : MonoBehaviour
 
         scriptPlayer = player.GetComponent<Player>();
 
+        anim= player.GetComponent<Animator>();
+
         auxtimer = timer;
     }
 
@@ -36,6 +40,11 @@ public class BotonGrua : MonoBehaviour
     {
         if (activado2)
         {
+            anim.SetBool("Grabing", false);
+            anim.SetFloat("Speed", 0.0f);
+            scriptPlayer.enabled = false;
+            scriptPlayer.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
             if (timer == auxtimer) {
                 RB2D.isKinematic = false;
                 Destroy(RB2D.gameObject, 3f);
