@@ -12,6 +12,8 @@ public class PlayerPush : MonoBehaviour
 
     private Animator anim;
 
+    private bool tocarSuelo;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +29,7 @@ public class PlayerPush : MonoBehaviour
         RaycastHit2D hit=Physics2D.Raycast(transform.position, Vector2.right*transform.localScale.x, distance, boxMask);
 
 
-        if (hit.collider != null && hit.collider.gameObject.tag == "Pushable" && Input.GetKeyDown(KeyCode.E) && !Joined)
+        if (hit.collider != null && hit.collider.gameObject.tag == "Pushable" && Input.GetKeyDown(KeyCode.E) && !Joined && tocarSuelo)
         {
             Joined = true;
             box = hit.collider.gameObject;
@@ -58,5 +60,21 @@ public class PlayerPush : MonoBehaviour
         Gizmos.color=Color.yellow;
 
         Gizmos.DrawLine(transform.position, (Vector2)transform.position +Vector2.right*transform.localScale.x * distance);
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Grounded")
+        {
+            tocarSuelo = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Grounded")
+        {
+            tocarSuelo = false;
+        }
     }
 }

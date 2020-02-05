@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Robot : MonoBehaviour
 {
-    public GameObject robot, corazon, camara, player, target;
+    public GameObject robot, parteCorazon1, parteCorazon2, parteCorazon3, camara, player, target;
 
     private FollowTarget follow;
+
+    private TriggerRobot triggerParte1, triggerParte2, triggerParte3;
 
     private Animator anim, animPj;
 
@@ -22,20 +24,17 @@ public class Robot : MonoBehaviour
         animPj= player.GetComponent<Animator>();
         follow =camara.GetComponent<FollowTarget>();
         scriptPlayer = player.GetComponent<Player>();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        triggerParte1= parteCorazon1.GetComponent<TriggerRobot>();
+        triggerParte2= parteCorazon2.GetComponent<TriggerRobot>();
+        triggerParte3= parteCorazon3.GetComponent<TriggerRobot>();
     }
 
 
     void FixedUpdate()
     {
-        if(animacion)
+        if(animacion && triggerParte1.puesto==true && triggerParte2.puesto==true && triggerParte3.puesto==true)
         {
-            animPj.SetBool("Grabing", false);
             animPj.SetFloat("Speed", 0.0f);
             scriptPlayer.enabled = false;
             scriptPlayer.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -57,9 +56,8 @@ public class Robot : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Pushable")
+        if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.SetActive(false);
             animacion=true;
         }
     }

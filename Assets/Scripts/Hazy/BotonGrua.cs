@@ -14,6 +14,8 @@ public class BotonGrua : MonoBehaviour
 
     private Player scriptPlayer;
 
+    private BoxCollider2D BC2D;
+
     public float timer;
 
     private Animator anim;
@@ -31,6 +33,8 @@ public class BotonGrua : MonoBehaviour
 
         anim= player.GetComponent<Animator>();
 
+        BC2D= GetComponent<BoxCollider2D>();
+
         auxtimer = timer;
     }
 
@@ -44,6 +48,8 @@ public class BotonGrua : MonoBehaviour
             anim.SetFloat("Speed", 0.0f);
             scriptPlayer.enabled = false;
             scriptPlayer.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
+            BC2D.enabled=false;
 
             if (timer == auxtimer) {
                 RB2D.isKinematic = false;

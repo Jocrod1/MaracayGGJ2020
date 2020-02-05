@@ -1,5 +1,62 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &716706279
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 716706280}
+  - component: {fileID: 716706281}
+  m_Layer: 0
+  m_Name: Puerta
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &716706280
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716706279}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.12, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6936076125635154013}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &716706281
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716706279}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.04488635, y: 1.4253774}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.19204378, y: 6.0784235}
+  m_EdgeRadius: 0
 --- !u!114 &6936076126524343963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,11 +168,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6936076125635154001}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.110931, y: 2.9367962, z: 118.02358}
+  m_LocalPosition: {x: -13.110931, y: 0.27, z: 118.02358}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6936076126397401286}
   - {fileID: 6936076124588819317}
+  - {fileID: 716706280}
   m_Father: {fileID: 5433569175468955244}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -182,7 +240,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.8421385, y: -1.1125836}
+  m_Offset: {x: -0.602926, y: -0.8403766}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -193,7 +251,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7763498, y: 1.2743013}
+  m_Size: {x: 0.8258414, y: 1.8187156}
   m_EdgeRadius: 0
 --- !u!114 &6936076125635154002
 MonoBehaviour:
@@ -210,7 +268,10 @@ MonoBehaviour:
   corazon: {fileID: 3396275565176289232}
   player: {fileID: 0}
   target: {fileID: 6936076125703294374}
-  target2: {fileID: 6936076124588819316}
+  parteCorazon1: {fileID: 0}
+  parteCorazon2: {fileID: 0}
+  parteCorazon3: {fileID: 0}
+  puerta: {fileID: 716706279}
   velocidad: 5
 --- !u!1 &6936076125703294374
 GameObject:
@@ -236,7 +297,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6936076125703294374}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.9909315, y: 17.98, z: 118.02358}
+  m_LocalPosition: {x: -12.9909315, y: 16.67, z: 118.02358}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5433569175468955244}
@@ -252,9 +313,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6936076126397401286}
   - component: {fileID: 6936076126397401287}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Trigger
-  m_TagString: Untagged
+  m_TagString: Grounded
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -286,7 +347,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.036394954, y: -1.9391055}
+  m_Offset: {x: -0.036394954, y: -1.913055}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -297,7 +358,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.6185048, y: 0.073859215}
+  m_Size: {x: 2.6185048, y: 0.12596035}
   m_EdgeRadius: 0
 --- !u!1001 &6936076124582109405
 PrefabInstance:
@@ -370,7 +431,7 @@ PrefabInstance:
     - target: {fileID: 5719601064750290694, guid: f520e5491f24ac449ae165758c8fc4a9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.39
+      value: 1.526
       objectReference: {fileID: 0}
     - target: {fileID: 5719601064750290694, guid: f520e5491f24ac449ae165758c8fc4a9,
         type: 3}
@@ -436,6 +497,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Corazon
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719601064750290701, guid: f520e5491f24ac449ae165758c8fc4a9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f520e5491f24ac449ae165758c8fc4a9, type: 3}

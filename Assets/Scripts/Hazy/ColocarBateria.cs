@@ -33,6 +33,7 @@ public class ColocarBateria : MonoBehaviour
         push = player.GetComponent<PlayerPush>();
 
         anim= player.GetComponent<Animator>();
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -47,6 +48,8 @@ public class ColocarBateria : MonoBehaviour
             push.Joined = false;
             bateria.GetComponent<FixedJoint2D>().enabled = false;
             collision.gameObject.SetActive(false);
+
+            bateria.transform.position= new Vector3(-9.3f, -0.36f, 5f);
 
             animacion=true;
         }
